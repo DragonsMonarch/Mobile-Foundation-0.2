@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login2">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.dragonslotos.foundation.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/login2"
+        android:name="com.dragonslotos.foundation.screens.login.login"
+        android:label="login"
+        tools:layout="@layout/login" />
+    <fragment
+        android:id="@+id/registered"
+        android:name="com.dragonslotos.foundation.screens.registration.registered"
+        android:label="fragment_registered"
+        tools:layout="@layout/fragment_registered" >
+        <action
+            android:id="@+id/action_registered_to_login2"
+            app:destination="@id/login2"
+            app:launchSingleTop="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/table2"
+        android:name="com.dragonslotos.foundation.screens.table.Table"
+        android:label="fragment_table"
+        tools:layout="@layout/fragment_table" />
+    <fragment
+        android:id="@+id/add_Post"
+        android:name="com.dragonslotos.foundation.screens.add_post.Add_Post"
+        android:label="fragment_add__post"
+        tools:layout="@layout/fragment_add__post" />
+    <fragment
+        android:id="@+id/post2"
+        android:name="com.dragonslotos.foundation.screens.post.Post"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" />
+    <fragment
+        android:id="@+id/look_post3"
+        android:name="com.dragonslotos.foundation.screens.lookpost.look_post"
+        android:label="fragment_look_post"
+        tools:layout="@layout/fragment_look_post" />
+</navigation>

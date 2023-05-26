@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_table"
+    app:startDestination="@id/look_post">
+    <fragment
+        android:id="@+id/item_1"
+        android:name="com.dragonslotos.foundation.screens.posts.Posts"
+        android:label="fragment_posts"
+        tools:layout="@layout/fragment_posts" />
+    <fragment
+        android:id="@+id/item_2"
+        android:name="com.dragonslotos.foundation.screens.profile.Profile"
+        android:label="fragment_porfile"
+        tools:layout="@layout/fragment_porfile" />
+    <fragment
+        android:id="@+id/table"
+        android:name="com.dragonslotos.foundation.screens.table.Table"
+        android:label="fragment_table"
+        tools:layout="@layout/fragment_table" />
+    <fragment
+        android:id="@+id/look_post"
+        android:name="com.dragonslotos.foundation.screens.lookpost.look_post"
+        android:label="fragment_look_post"
+        tools:layout="@layout/fragment_look_post" />
+</navigation>
