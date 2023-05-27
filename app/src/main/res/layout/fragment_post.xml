@@ -31,7 +31,14 @@
                 android:layout_gravity="center"
                 android:text="Название поста"
                 android:textAlignment="center"
+                android:layout_weight="1"
                 android:textSize="20sp"/>
+            <Button
+                android:id="@+id/likeButton"
+                android:background="@drawable/ic_favourit_border"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                />
 
         </LinearLayout>
 

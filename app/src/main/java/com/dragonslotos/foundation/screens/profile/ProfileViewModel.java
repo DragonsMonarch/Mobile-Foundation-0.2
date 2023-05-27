@@ -20,6 +20,7 @@ public class ProfileViewModel extends ViewModel {
     MutableLiveData Password = new MutableLiveData<String>();
     MutableLiveData Posts = new MutableLiveData<List<Post>>();
     List<Post> origPosts = new ArrayList<Post>();
+    MutableLiveData PostsLike = new MutableLiveData<List<Post>>();
     public void getFromeServeAll(){
         NetworkService.getInstance().getJSONApi()
                 .getPosts("api/posts/getown/" + Login.getValue() + "/" + Password.getValue())
@@ -28,6 +29,21 @@ public class ProfileViewModel extends ViewModel {
                     public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                         origPosts = response.body();
                         Posts.setValue(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Post>> call, Throwable t) {
+
+                    }
+                });
+    }
+    public void getLikeFromeServeAll(){
+        NetworkService.getInstance().getJSONApi()
+                .getPosts("api/posts/like/get/" + Login.getValue() + "/" + Password.getValue())
+                .enqueue(new Callback<List<Post>>() {
+                    @Override
+                    public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                        PostsLike.setValue(response.body());
                     }
 
                     @Override
