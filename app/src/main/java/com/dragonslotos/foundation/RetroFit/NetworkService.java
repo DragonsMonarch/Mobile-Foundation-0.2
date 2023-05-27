@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "https://cadb-31-23-189-139.ngrok-free.app";
+    private static final String BASE_URL = "https://923c-31-23-189-139.ngrok-free.app";
     private Retrofit mRetrofit;
 
     private NetworkService() {
