@@ -98,10 +98,8 @@
                         android:layout_width="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/vk_color"
-                        style="@style/Widget.AppCompat.Button.Colored"
+                        app:backgroundTint="@color/vk_color"
                         android:textSize="12sp"
-                        app:icon="@drawable/vk_logo_blue_40x40"
                         android:layout_gravity="start"
                         android:text="Войти через VK ID" />
                     <com.google.android.material.button.MaterialButton
