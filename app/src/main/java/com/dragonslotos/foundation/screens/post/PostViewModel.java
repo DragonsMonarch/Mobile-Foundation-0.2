@@ -10,6 +10,8 @@ import com.dragonslotos.foundation.DTO.PostDTO;
 import com.dragonslotos.foundation.RetroFit.NetworkService;
 import com.dragonslotos.foundation.model.Post;
 import com.dragonslotos.foundation.model.Theme;
+import com.dragonslotos.foundation.model.User;
+import com.vk.api.sdk.requests.VKRequest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +28,8 @@ public class PostViewModel extends ViewModel {
     MutableLiveData Posts = new MutableLiveData<List<com.dragonslotos.foundation.model.Post>>();
     MutableLiveData Name = new MutableLiveData<String>();
     MutableLiveData Like = new MutableLiveData<Boolean>();
+    MutableLiveData Owner = new MutableLiveData<String>();
+    MutableLiveData PostOwner = new MutableLiveData<User>();
     List<com.dragonslotos.foundation.model.Post> origPosts = new ArrayList<com.dragonslotos.foundation.model.Post>();
     public PostViewModel(){
         Like.setValue(false);
@@ -107,5 +111,24 @@ public class PostViewModel extends ViewModel {
 
                     }
                 });
+    }
+    public void getOwner(){
+        NetworkService.getInstance().getJSONApi().getUser("/api/auth/getuser/" + Owner.getValue() +"/" + Login.getValue().toString() +"/" + Password.getValue().toString())
+                .enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        PostOwner.setValue(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+    }
+    public void setTablPoints(){
+        //Пока пусть бует вдруг прегадится
+
+        VKRequest request = new VKRequest("secure.addAppEvent", "5.131");
     }
 }

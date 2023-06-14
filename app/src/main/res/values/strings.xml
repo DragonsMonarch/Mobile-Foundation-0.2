@@ -13,4 +13,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_table">TableActivity</string>
     <string name="ownPosts">Посты Пользователя</string>
+    <integer name="com_vk_sdk_AppId">51669815</integer>
 </resources>

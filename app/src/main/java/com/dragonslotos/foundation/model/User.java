@@ -10,6 +10,29 @@ public class User {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("idVk")
+    @Expose
+    private String idVK;
+
+    @SerializedName("likes")
+    @Expose
+    private long likes;
+
+    public String getIdVK() {
+        return idVK;
+    }
+
+    public void setIdVK(String idVK) {
+        this.idVK = idVK;
+    }
+
+    public long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(long likes) {
+        this.likes = likes;
+    }
 
     public String getPassword() {
         return password;

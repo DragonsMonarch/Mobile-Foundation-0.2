@@ -4,6 +4,7 @@ import com.dragonslotos.foundation.DTO.PostDTO;
 import com.dragonslotos.foundation.DTO.LoginDto;
 import com.dragonslotos.foundation.DTO.SignUpDTO;
 import com.dragonslotos.foundation.model.Post;
+import com.dragonslotos.foundation.model.User;
 
 import java.util.List;
 
@@ -22,5 +23,7 @@ public interface JSONPlaceHolderApi {
     public Call<List<Post>> getPosts(@Url String url);
     @POST
     public Call<PostDTO> postDataPost(@Url String url, @Body PostDTO data);
+    @GET
+    public Call<User> getUser(@Url String url);
 
 }

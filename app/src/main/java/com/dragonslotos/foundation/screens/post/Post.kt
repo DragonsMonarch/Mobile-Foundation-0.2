@@ -28,8 +28,10 @@ class  Post(bundle: Bundle) : Fragment() {
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         postViewModel.Login.value = bundle1?.getString("username")
         postViewModel.Password.value = bundle1?.getString("password")
+        postViewModel.Owner.value = bundle1?.getString("PostOwner")
         postViewModel.getLikeFromeServeAll()
         postViewModel.Name.value = bundle1.getString("PostName")
+        postViewModel.getOwner();
         val body: TextView? = view?.findViewById<TextView>(R.id.body)
         val name: TextView? = view?.findViewById<TextView>(R.id.postName)
         val time: TextView? = view?.findViewById<TextView>(R.id.Date)

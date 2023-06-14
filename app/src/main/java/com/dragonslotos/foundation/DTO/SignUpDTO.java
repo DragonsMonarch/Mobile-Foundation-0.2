@@ -10,7 +10,17 @@ public class SignUpDTO {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("idVK")
+    @Expose
+    private String idVK;
 
+    public String getIdVK() {
+        return idVK;
+    }
+
+    public void setIdVK(String idVK) {
+        this.idVK = idVK;
+    }
     public String getPassword() {
         return password;
     }

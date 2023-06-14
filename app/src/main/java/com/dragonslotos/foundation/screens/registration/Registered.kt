@@ -1,5 +1,6 @@
 package com.dragonslotos.foundation.screens.registration
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.dragonslotos.foundation.MainActivity
 import com.dragonslotos.foundation.R
 import com.dragonslotos.foundation.screens.login.login
@@ -15,17 +19,24 @@ import com.dragonslotos.foundation.screens.table.Table
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.VKTokenExpiredHandler
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
+import com.vk.api.sdk.auth.VKAuthResult
+import com.vk.api.sdk.auth.VKScope
+import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
 
 
 class registered : Fragment() {
     lateinit var registeredViewModel: RegisteredViewModel
+    private lateinit var token: VKAccessToken
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         registeredViewModel = ViewModelProvider(this).get(RegisteredViewModel::class.java)
-
         val view: View? = inflater.inflate(R.layout.fragment_registered, container, false)
         val confrim: MaterialButton? = view?.findViewById<MaterialButton>(R.id.confrim)
 
@@ -40,6 +51,13 @@ class registered : Fragment() {
 
         val Exit: ImageButton? = view?.findViewById<ImageButton>(R.id.goToLogin)
 
+        val VKfrom: MaterialButton? = view?.findViewById<MaterialButton>(R.id.with_vk)
+        VKfrom?.setOnClickListener {
+
+            VK.login(requireActivity(), arrayListOf(VKScope.WALL, VKScope.PHOTOS))
+            registeredViewModel.vkRegistration();
+
+        }
         confrim?.setOnClickListener {
             if(Password?.text.toString().length < 7 ){
                 PasswordLayout?.error = "Пароль должен состоять от 8 знаков"
@@ -59,6 +77,7 @@ class registered : Fragment() {
             registeredViewModel.Password.value = Password?.text.toString()
             registeredViewModel.startUserRegistration();
         }
+
         registeredViewModel.Checking.observe(viewLifecycleOwner, {
             if(it == false){
                 LoginLayout?.error = "Такой логин уже есть"
@@ -68,6 +87,7 @@ class registered : Fragment() {
                 LoginLayout?.isErrorEnabled = false;
             }
         })
+
         registeredViewModel.Logging.observe(viewLifecycleOwner, {
             if(it == true){
                 var bundles = Bundle()
@@ -76,6 +96,7 @@ class registered : Fragment() {
                 (context as MainActivity).changeFragment(Table.newInstance(bundles))
             }
         })
+
         Exit?.setOnClickListener {
             (context as MainActivity).changeFragment(login.newInstance())
         }
@@ -84,9 +105,7 @@ class registered : Fragment() {
 
     }
 
-
-
-                override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
     }
     companion object{
